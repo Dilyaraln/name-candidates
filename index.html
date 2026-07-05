@@ -134,10 +134,8 @@ const ROOTS = [
   {o:"Bindu", e:"Bindel", d:"The dot; the seed-point from which form unfolds.", org:"Sanskrit"},
   {o:"Rasm", e:"Ramel", d:"The bare letter-skeleton, before the dots are placed.", org:"Arabic"},
   {o:"Titlo", e:"Tilon", d:"The scribal stroke drawn above an abbreviated word.", org:"Church Slavonic"},
-  {o:"Bindo", e:"Bindol", d:"The dot; the seed-point from which form unfolds.", org:"Coined from Sanskrit ‘bindu’"},
   {o:"Rasma", e:"Ramela", d:"The bare letter-skeleton, before the dots are placed.", org:"Coined from Arabic ‘rasm’"},
   {o:"Chuten", e:"Chulen", d:"The full stop ‘。’ that closes a sentence.", org:"Japanese"},
-  {o:"Padya", e:"Palen", d:"Verse; measured, metrical poetry.", org:"Sanskrit"},
   {o:"Sarga", e:"Sarala", d:"A canto — one chapter of an epic poem.", org:"Sanskrit"},
   {o:"Kavi", e:"Kavel", d:"Poet; seer.", org:"Sanskrit"},
   {o:"Sloka", e:"Solen", d:"A verse couplet.", org:"Sanskrit"},
@@ -159,7 +157,6 @@ const FIGURES = [
 ];
 
 const ENGLISH = [
-  {o:"Rapt", e:"Ralen", d:"Seized, carried off by the page.", org:"English · immersion"},
   {o:"Linger", e:"Linor", d:"To stay slowly inside a line.", org:"English · immersion"},
   {o:"Ponder", e:"Ponel", d:"To weigh a text in the mind.", org:"English · immersion"},
   {o:"Wander", e:"Wanel", d:"The mind roaming the page.", org:"English · immersion"},
@@ -169,7 +166,9 @@ const ENGLISH = [
   {o:"Sheaf", e:"Shelen", d:"A gathered bundle of leaves.", org:"English · craft"},
   {o:"Riffle", e:"Rilen", d:"The thumb run across the page-edges.", org:"English · craft"},
   {o:"Quire", e:"Kirel", d:"A folded gathering of pages.", org:"English · craft"},
-  {o:"Weft", e:"Welen", d:"The crosswise thread of a woven text.", org:"English · weave"},
+  {o:"Weft", d:"The crosswise thread of a woven text.", org:"English · weave"},
+  {o:"BeLit", d:"Be literary — a BeReal-style imperative, also playing on slang ‘lit’.", org:"Coined · imperative"},
+  {o:"Lade", d:"A millrace — the channel that carries water to a mill-wheel.", org:"English / Scots"},
   {o:"Skein", e:"Selkan", d:"A coiled length of yarn; a strand of narrative.", org:"English · weave"},
   {o:"Braid", e:"Bralen", d:"Woven strands of story.", org:"English · weave"},
   {o:"Purl", e:"Pulen", d:"A soft stitch; also the murmur of a stream.", org:"English · weave"},
@@ -193,7 +192,7 @@ function cardHTML(it,i){
     <article class="card">
       <div class="idx">${pad(i+1)}</div>
       <div class="word-main">${it.o}</div>
-      <div class="from"><span class="arrow">&rarr;</span><span class="word-sub">${it.e}</span></div>
+      ${it.e ? `<div class="from"><span class="arrow">&rarr;</span><span class="word-sub">${it.e}</span></div>` : ``}
       <details>
         <summary>
           <span class="reveal">
@@ -224,7 +223,25 @@ function shuffle(arr){
   return a;
 }
 
-const ALL = [...ROOTS, ...FIGURES, ...ENGLISH];
+const WARM = [
+  {o:"Talo", d:"‘Home’ in Finnish — a place to curl up and read.", org:"Coined · warm"},
+  {o:"Oda", d:"A warm inner room — and an ‘ode’.", org:"Coined · warm"},
+  {o:"Ivo", d:"A short, warm, human name-feel.", org:"Coined · warm"},
+  {o:"Vello", d:"A soft echo of ‘vellum’, the old book parchment.", org:"Coined · warm"},
+  {o:"Stelo", d:"‘Story’ and ‘star’, softened together.", org:"Coined · warm"},
+  {o:"Rello", d:"A friendly nothing-word built on ‘read’.", org:"Coined · warm"},
+  {o:"Fenn", d:"Earthy and blunt, calm like ‘Ebb’.", org:"Coined · warm"},
+  {o:"Odo", d:"Gentle, symmetrical, human.", org:"Coined · warm"},
+  {o:"Nilo", d:"Warm and flowing.", org:"Coined · warm"},
+  {o:"Amble", d:"An unhurried walk — the mood of getting lost in a book.", org:"English · warm (verify)"},
+  {o:"Snug", d:"A cozy nook to read in.", org:"English · warm (verify)"},
+  {o:"Roost", d:"A warm perch to settle on.", org:"English · warm (verify)"},
+  {o:"Perch", d:"Where you settle in to read.", org:"English · warm (verify)"},
+  {o:"Spool", d:"A story unspooling, thread by thread.", org:"English · warm (verify)"},
+  {o:"Aloud", d:"Reading aloud — human, spoken.", org:"English · warm (verify)"}
+];
+
+const ALL = [...ROOTS, ...FIGURES, ...ENGLISH, ...WARM];
 
 document.getElementById("count").textContent = ALL.length + " candidates";
 

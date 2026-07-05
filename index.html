@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Working Names</title>
+<style>
+  :root{
+    --bg:#14110f;
+    --surface:#1c1714;
+    --surface-2:#241d19;
+    --hair:rgba(180,150,130,0.14);
+    --hair-strong:rgba(165,172,184,0.38);
+    --text-primary:#e8ddd5;
+    --text-secondary:#b5aaa3;
+    --text-muted:#8c837e;
+    --text-subtle:#6e6763;
+    --accent:#a5acb8;
+    --warn:#c9a57a;
+    --serif:"Times New Roman",Times,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Avenir Next",system-ui,sans-serif;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    min-height:100vh;
+    background:radial-gradient(130% 90% at 50% -12%, #1b1512 0%, #130f0d 55%, #0e0b09 100%);
+    color:var(--text-primary);
+    font-family:var(--serif);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:56px 28px 96px}
+
+  header{margin-bottom:14px}
+  .eyebrow{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;color:var(--text-subtle)}
+  h1{margin:14px 0 8px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:44px;line-height:1.02;letter-spacing:.3px;color:var(--text-primary)}
+  .sub{font-family:var(--serif);font-size:17px;line-height:1.5;color:var(--text-secondary);max-width:56ch}
+
+  .toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+  .count{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:var(--text-muted);margin-right:6px}
+  button.tool{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-secondary);background:var(--surface);border:1px solid var(--hair);padding:9px 16px;border-radius:999px;cursor:pointer;transition:border-color .24s var(--ease),color .24s var(--ease),background .24s var(--ease),transform .12s var(--ease)}
+  button.tool:hover{border-color:var(--hair-strong);color:var(--text-primary);background:var(--surface-2)}
+  button.tool:active{transform:scale(.97)}
+
+  .section{margin-top:46px}
+  .section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .section-head .lbl{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;color:var(--text-secondary)}
+  .section-head .n{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:1.4px;color:var(--text-subtle)}
+  .section-desc{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--text-muted);margin:0 0 18px;max-width:60ch}
+  .rule{height:1px;background:var(--hair);border:0;margin:0 0 18px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:16px}
+
+  .card{position:relative;background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:18px 20px 14px;transition:transform .28s var(--ease),border-color .28s var(--ease),background .28s var(--ease),box-shadow .28s var(--ease)}
+  .card:hover{transform:translateY(-3px);border-color:var(--hair-strong);background:var(--surface-2);box-shadow:0 12px 34px rgba(0,0,0,.42)}
+  .idx{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:1.6px;color:var(--text-subtle);font-variant-numeric:tabular-nums}
+
+  .word-main{margin:14px 0 2px;font-family:var(--serif);font-weight:500;font-size:29px;line-height:1.05;letter-spacing:.4px;color:var(--text-primary)}
+  .from{display:flex;align-items:center;gap:8px;margin:0 0 4px}
+  .arrow{color:var(--accent);font-size:13px;font-family:var(--sans)}
+  .word-sub{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--text-muted)}
+
+  details{margin-top:12px}
+  summary{list-style:none;outline:none}
+  summary::-webkit-details-marker{display:none}
+  .reveal{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:1.7px;text-transform:uppercase;color:var(--accent);padding:6px 0;transition:color .2s var(--ease)}
+  .reveal:hover{color:var(--text-primary)}
+  .reveal .ic{display:inline-block;width:11px;height:11px;position:relative;transition:transform .28s var(--ease)}
+  .reveal .ic::before,.reveal .ic::after{content:"";position:absolute;background:currentColor;border-radius:1px}
+  .reveal .ic::before{left:0;top:5px;width:11px;height:1.4px}
+  .reveal .ic::after{left:5px;top:0;width:1.4px;height:11px}
+  details[open] .reveal .ic{transform:rotate(45deg)}
+  details[open] .lbl-show{display:none}
+  .lbl-hide{display:none}
+  details[open] .lbl-hide{display:inline}
+
+  .meaning{margin-top:12px;padding-top:13px;border-top:1px solid var(--hair);animation:fade .34s var(--ease)}
+  @keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .def{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--text-secondary)}
+  .org{margin-top:8px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--text-subtle)}
+  .warn{display:block;margin-top:7px;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--warn)}
+
+  footer{margin-top:56px;font-family:var(--sans);font-size:11px;line-height:1.6;color:var(--text-subtle);max-width:66ch}
+
+  @media (max-width:520px){
+    .wrap{padding:40px 18px 72px}
+    h1{font-size:34px}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+    .word-main{font-size:26px}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">Working Names</div>
+      <h1>Original &rarr; Refined</h1>
+      <p class="sub">Each card shows the source word, then a form re-tuned for sound — sonorants (l·m·n·r), open vowels, no harsh clusters. Tap to reveal what the source means.</p>
+      <div class="toolbar">
+        <span class="count" id="count"></span>
+        <button class="tool" id="shuffle">Shuffle</button>
+        <button class="tool" id="revealAll">Reveal all</button>
+        <button class="tool" id="hideAll">Hide all</button>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="grid" id="grid-all"></div>
+    </section>
+
+    <footer>
+      Refined forms are tuned for euphony and may be meaningless by design. Meanings describe the source word and stay hidden until tapped. Names marked ⚠ still need a live App Store &amp; trademark check.
+    </footer>
+  </div>
+
+<script>
+const ROOTS = [
+  {o:"Satura", e:"Salen", d:"A full dish; a medley of many forms in one vessel.", org:"Latin — the true root of ‘satire’"},
+  {o:"Satur", e:"Saren", d:"Full, sated, brimming.", org:"Latin"},
+  {o:"Satra", e:"Salan", d:"A full dish; a medley of many forms in one vessel.", org:"Coined from Latin ‘satura’"},
+  {o:"Satora", e:"Saldon", d:"A full dish; a medley of many forms in one vessel.", org:"Coined from Latin ‘satura’"},
+  {o:"Setura", e:"Selun", d:"A full dish; a medley of many forms in one vessel.", org:"Coined from Latin ‘satura’"},
+  {o:"Satro", e:"Salten", d:"A full dish; a medley of many forms in one vessel.", org:"Coined from Latin ‘satura’"},
+  {o:"Satus", e:"Salos", d:"A sowing, a begetting — the book as sown seed.", org:"Latin"},
+  {o:"Lanx", e:"Lanor", d:"A dish, a platter — the vessel of ‘lanx satura’.", org:"Latin"},
+  {o:"Legen", e:"Lemen", d:"Things to be read — the root of ‘legend’.", org:"Latin (legenda)"},
+  {o:"Releg", e:"Relen", d:"To read again — Cicero’s root of ‘religion’.", org:"Latin (relegere)"},
+  {o:"Incipe", e:"Incelo", d:"Begin! — cf. ‘incipit’, a book’s opening words.", org:"Latin"},
+  {o:"Scida", e:"Silen", d:"A strip or leaf of papyrus.", org:"Latin"},
+  {o:"Octavo", e:"Olavo", d:"A book format, folded eight leaves to a sheet.", org:"Latin"},
+  {o:"Bindu", e:"Bindel", d:"The dot; the seed-point from which form unfolds.", org:"Sanskrit"},
+  {o:"Rasm", e:"Ramel", d:"The bare letter-skeleton, before the dots are placed.", org:"Arabic"},
+  {o:"Titlo", e:"Tilon", d:"The scribal stroke drawn above an abbreviated word.", org:"Church Slavonic"},
+  {o:"Bindo", e:"Bindol", d:"The dot; the seed-point from which form unfolds.", org:"Coined from Sanskrit ‘bindu’"},
+  {o:"Rasma", e:"Ramela", d:"The bare letter-skeleton, before the dots are placed.", org:"Coined from Arabic ‘rasm’"},
+  {o:"Chuten", e:"Chulen", d:"The full stop ‘。’ that closes a sentence.", org:"Japanese"},
+  {o:"Padya", e:"Palen", d:"Verse; measured, metrical poetry.", org:"Sanskrit"},
+  {o:"Sarga", e:"Sarala", d:"A canto — one chapter of an epic poem.", org:"Sanskrit"},
+  {o:"Kavi", e:"Kavel", d:"Poet; seer.", org:"Sanskrit"},
+  {o:"Sloka", e:"Solen", d:"A verse couplet.", org:"Sanskrit"},
+  {o:"Qalam", e:"Kalon", d:"The reed pen; the act of writing.", org:"Arabic/Persian — refined form echoes Greek ‘kalon’, the beautiful"},
+  {o:"Bayaz", e:"Balaya", d:"A poet’s commonplace-book of gathered verse.", org:"Persian"},
+  {o:"Qalem", e:"Kalen", d:"Pen.", org:"Turkish"},
+  {o:"Kalam", e:"Kalum", d:"Word; speech.", org:"Arabic"},
+  {o:"Sillar", e:"Silor", d:"Dressed, crafted stone — built to last.", org:"Spanish"}
+];
+
+const FIGURES = [
+  {o:"Otlet", e:"Otelo", d:"Paul Otlet — father of information science; built the Mundaneum to catalog and connect all human text.", org:"After Paul Otlet, 1868–1944"},
+  {o:"Alhaz", e:"Alaren", d:"From Ibn al-Haytham (Alhazen), author of the Book of Optics — who made seeing, and so reading, a science.", org:"From Alhazen, 965–1040"},
+  {o:"Callim", e:"Kalim", d:"Callimachus — the Library of Alexandria’s cataloguer, who invented the first library catalog.", org:"From Callimachus, c. 310–240 BC"},
+  {o:"Kallis", e:"Kalven", d:"Alexandria’s cataloguer, who invented the first library catalog.", org:"From Callimachus, c. 310–240 BC"},
+  {o:"Merian", e:"Merilo", d:"Maria Sibylla Merian — a naturalist whose science lived inside her own illustrated books.", org:"After M. S. Merian, 1647–1717", warn:"faint ‘Marian’ first-name echo"},
+  {o:"Vesal", e:"Velen", d:"From Vesalius, who personally directed the typography of his landmark anatomy book.", org:"From Andreas Vesalius"},
+  {o:"Biruni", e:"Bilen", d:"Al-Biruni — polymath whose science lived inside great manuscripts.", org:"After Al-Biruni, 973–1048"}
+];
+
+const ENGLISH = [
+  {o:"Rapt", e:"Ralen", d:"Seized, carried off by the page.", org:"English · immersion"},
+  {o:"Linger", e:"Linor", d:"To stay slowly inside a line.", org:"English · immersion"},
+  {o:"Ponder", e:"Ponel", d:"To weigh a text in the mind.", org:"English · immersion"},
+  {o:"Wander", e:"Wanel", d:"The mind roaming the page.", org:"English · immersion"},
+  {o:"Bask", e:"Balen", d:"To sit warm inside a passage.", org:"English · immersion"},
+  {o:"Deckle", e:"Delkan", d:"The feathered edge of handmade paper.", org:"English · craft"},
+  {o:"Nib", e:"Nimel", d:"The pen-tip where ink meets page.", org:"English · craft"},
+  {o:"Sheaf", e:"Shelen", d:"A gathered bundle of leaves.", org:"English · craft"},
+  {o:"Riffle", e:"Rilen", d:"The thumb run across the page-edges.", org:"English · craft"},
+  {o:"Quire", e:"Kirel", d:"A folded gathering of pages.", org:"English · craft"},
+  {o:"Weft", e:"Welen", d:"The crosswise thread of a woven text.", org:"English · weave"},
+  {o:"Skein", e:"Selkan", d:"A coiled length of yarn; a strand of narrative.", org:"English · weave"},
+  {o:"Braid", e:"Bralen", d:"Woven strands of story.", org:"English · weave"},
+  {o:"Purl", e:"Pulen", d:"A soft stitch; also the murmur of a stream.", org:"English · weave"},
+  {o:"Furl", e:"Fulen", d:"The scroll opening or closing.", org:"English · weave"},
+  {o:"Cusp", e:"Cusel", d:"The turning point of understanding.", org:"English · threshold"},
+  {o:"Cleft", e:"Celen", d:"An opening; a way in.", org:"English · threshold"},
+  {o:"Fathom", e:"Falom", d:"To grasp a text’s full depth. (the harsh ‘th’ is removed per Crystal’s rule)", org:"English · depth"},
+  {o:"Seam", e:"Selen", d:"Where pages and meanings join.", org:"English · threshold"},
+  {o:"Ebb", e:"Emel", d:"The tidal pull of a book’s pacing.", org:"English · flow"},
+  {o:"Umbra", e:"Umbren", d:"The shadow the words cast.", org:"English · light"},
+  {o:"Sheen", e:"Shelo", d:"The soft light off ink and paper.", org:"English · light"},
+  {o:"Gloam", e:"Golen", d:"Twilight; the dimming that draws you in.", org:"English · light"},
+  {o:"Wick", e:"Wilen", d:"What draws the flame upward — carrying reading’s light.", org:"English · light"},
+  {o:"Cast", e:"Caslo", d:"The tint thrown across a scene.", org:"English · light"}
+];
+
+function pad(n){return String(n).padStart(2,"0")}
+
+function cardHTML(it,i){
+  return `
+    <article class="card">
+      <div class="idx">${pad(i+1)}</div>
+      <div class="word-main">${it.o}</div>
+      <div class="from"><span class="arrow">&rarr;</span><span class="word-sub">${it.e}</span></div>
+      <details>
+        <summary>
+          <span class="reveal">
+            <span class="ic"></span>
+            <span class="lbl-show">Reveal meaning</span>
+            <span class="lbl-hide">Meaning</span>
+          </span>
+        </summary>
+        <div class="meaning">
+          <div class="def">${it.d}</div>
+          <div class="org">${it.org}</div>
+          ${it.warn ? `<span class="warn">⚠ ${it.warn}</span>` : ``}
+        </div>
+      </details>
+    </article>`;
+}
+
+function render(id,list){
+  document.getElementById(id).innerHTML = list.map(cardHTML).join("");
+}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+const ALL = [...ROOTS, ...FIGURES, ...ENGLISH];
+
+document.getElementById("count").textContent = ALL.length + " candidates";
+
+document.getElementById("shuffle").addEventListener("click",()=>render("grid-all", shuffle(ALL)));
+document.getElementById("revealAll").addEventListener("click",()=>
+  document.querySelectorAll("details").forEach(d=>d.open=true));
+document.getElementById("hideAll").addEventListener("click",()=>
+  document.querySelectorAll("details").forEach(d=>d.open=false));
+
+render("grid-all", shuffle(ALL));
+</script>
+</body>
+</html>
